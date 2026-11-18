@@ -1,0 +1,2271 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>SOLU DIGITAL AUDIO TOOLS — 15-in-1 Offline Audio & Music Studio</title>
+
+  <style>
+    /* ==========================================================================
+       100% OFFLINE CSS SYSTEM (DARK & LIGHT THEME, MOBILE + DESKTOP RESPONSIVE)
+       ========================================================================== */
+    :root {
+      --bg-app: #070b12;
+      --bg-panel: #0f1624;
+      --bg-card: #172135;
+      --bg-input: #0a0f1a;
+      --border: #253452;
+      --text-main: #f8fafc;
+      --text-sub: #94a3b8;
+      --text-dim: #64748b;
+      --accent: #3b82f6;
+      --accent-2: #8b5cf6;
+      --cyan: #06b6d4;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+    }
+
+    [data-theme="light"] {
+      --bg-app: #e2e8f0;
+      --bg-panel: #ffffff;
+      --bg-card: #f8fafc;
+      --bg-input: #ffffff;
+      --border: #cbd5e1;
+      --text-main: #0f172a;
+      --text-sub: #475569;
+      --text-dim: #64748b;
+      --accent: #2563eb;
+      --accent-2: #7c3aed;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      max-width: 100vw;
+      overflow-x: hidden;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg-app);
+      color: var(--text-main);
+      font-size: 14px;
+    }
+
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* ==========================================================================
+       TOP STUDIO HEADER
+       ========================================================================== */
+    .app-header {
+      background: var(--bg-panel);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .brand-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 11px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      color: #fff;
+      font-weight: 900;
+      flex-shrink: 0;
+      box-shadow: 0 6px 16px rgba(59, 130, 246, 0.35);
+    }
+
+    .brand-title {
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: 0.4px;
+      margin: 0;
+      background: linear-gradient(90deg, #38bdf8, #a78bfa, #f472b6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-sub {
+      font-size: 11px;
+      color: var(--text-sub);
+      margin: 1px 0 0 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    /* ==========================================================================
+       BUTTONS, INPUTS & UI CARDS
+       ========================================================================== */
+    .btn {
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-main);
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: 0.15s ease;
+      user-select: none;
+    }
+
+    .btn:hover { border-color: var(--accent); }
+    .btn:active { transform: scale(0.98); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      border-color: transparent;
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(59, 130, 246, 0.32);
+    }
+
+    .btn-success {
+      background: linear-gradient(135deg, #059669, #10b981);
+      border-color: transparent;
+      color: #fff;
+    }
+
+    .btn-danger {
+      background: rgba(239, 68, 68, 0.15);
+      border-color: rgba(239, 68, 68, 0.45);
+      color: #f87171;
+    }
+
+    .btn-sm { padding: 6px 10px; font-size: 11px; border-radius: 8px; }
+    .btn-block { width: 100%; }
+
+    .input, .select {
+      width: 100%;
+      background: var(--bg-input);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      padding: 8px 10px;
+      border-radius: 9px;
+      font-size: 12.5px;
+      font-weight: 600;
+      outline: none;
+      font-family: inherit;
+    }
+
+    .input:focus, .select:focus { border-color: var(--accent); }
+
+    label.lbl {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--text-sub);
+      margin-bottom: 5px;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent);
+      cursor: pointer;
+      height: 5px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 13px;
+      margin-bottom: 12px;
+    }
+
+    .card-head {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #38bdf8;
+      margin: 0 0 10px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+
+    /* ==========================================================================
+       MAIN SPLIT WORKSPACE (LEFT RAIL + WAVEFORM DECK + TOOL INSPECTOR)
+       ========================================================================== */
+    .workspace {
+      display: flex;
+      flex-direction: column;
+      min-height: calc(100vh - 61px);
+      padding-bottom: 70px;
+    }
+
+    @media (min-width: 1024px) {
+      .workspace {
+        flex-direction: row;
+        height: calc(100vh - 61px);
+        overflow: hidden;
+        padding-bottom: 0;
+      }
+    }
+
+    /* Tool Navigation Rail */
+    .tool-rail {
+      background: var(--bg-panel);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      overflow-x: auto;
+      padding: 8px;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    @media (min-width: 1024px) {
+      .tool-rail {
+        flex-direction: column;
+        width: 106px;
+        border-bottom: none;
+        border-right: 1px solid var(--border);
+        padding: 10px 7px;
+        overflow-y: auto;
+      }
+    }
+
+    .tool-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-sub);
+      border-radius: 11px;
+      padding: 8px 8px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      min-width: 78px;
+      font-size: 10.5px;
+      font-weight: 700;
+      text-align: center;
+      flex-shrink: 0;
+      transition: 0.15s;
+    }
+
+    .tool-btn .ico { font-size: 18px; }
+    .tool-btn:hover { background: var(--bg-card); color: var(--text-main); }
+    .tool-btn.active {
+      background: rgba(59, 130, 246, 0.16);
+      border-color: var(--accent);
+      color: #38bdf8;
+    }
+
+    /* Center Waveform & Transport Deck */
+    .stage-col {
+      flex: 1.25;
+      display: flex;
+      flex-direction: column;
+      background: radial-gradient(circle at center, #111a2e 0%, var(--bg-app) 100%);
+      padding: 14px;
+      overflow-y: auto;
+      gap: 12px;
+    }
+
+    [data-theme="light"] .stage-col {
+      background: radial-gradient(circle at center, #cbd5e1 0%, #94a3b8 100%);
+    }
+
+    /* Right Tool Inspector Panel */
+    .inspector-col {
+      flex: 1;
+      max-width: 100%;
+      background: var(--bg-panel);
+      border-top: 1px solid var(--border);
+      padding: 14px;
+      overflow-y: auto;
+    }
+
+    @media (min-width: 1024px) {
+      .inspector-col {
+        max-width: 430px;
+        border-top: none;
+        border-left: 1px solid var(--border);
+      }
+    }
+
+    /* Waveform & Spectrum Canvases */
+    .deck-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .canvas-wrap {
+      position: relative;
+      width: 100%;
+      background: #060911;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    #waveform-canvas {
+      width: 100%;
+      height: 155px;
+      display: block;
+      cursor: ew-resize;
+      touch-action: none;
+    }
+
+    #spectrum-canvas {
+      width: 100%;
+      height: 95px;
+      display: block;
+    }
+
+    .transport-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .time-readout {
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      font-weight: 800;
+      color: #38bdf8;
+      background: var(--bg-input);
+      border: 1px solid var(--border);
+      padding: 6px 10px;
+      border-radius: 8px;
+    }
+
+    /* 10-Band Equalizer Grid */
+    .eq-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      text-align: center;
+    }
+    @media (min-width: 500px) {
+      .eq-grid { grid-template-columns: repeat(10, 1fr); }
+    }
+    .eq-band {
+      background: var(--bg-input);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      padding: 7px 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+    }
+    .eq-band span { font-size: 10px; font-weight: 700; color: var(--text-sub); }
+
+    .tool-pane { display: none; }
+    .tool-pane.active { display: block; }
+
+    /* Mobile Bottom Sticky Bar */
+    .mobile-bar {
+      position: fixed;
+      bottom: 0;
+      inset-x: 0;
+      background: var(--bg-panel);
+      border-top: 1px solid var(--border);
+      padding: 8px 10px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      z-index: 55;
+    }
+    @media (min-width: 1024px) { .mobile-bar { display: none; } }
+
+    /* Toast */
+    #toast-wrap {
+      position: fixed;
+      bottom: 72px;
+      right: 14px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      pointer-events: none;
+    }
+    @media (min-width: 1024px) { #toast-wrap { bottom: 18px; } }
+    .toast-item {
+      background: var(--bg-panel);
+      color: var(--text-main);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      padding: 9px 14px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.45);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================================================
+       TOP STUDIO HEADER
+       ======================================================================== -->
+  <header class="app-header">
+    <div class="brand">
+      <div class="brand-icon">🎧</div>
+      <div>
+        <h1 class="brand-title">SOLU DIGITAL AUDIO TOOLS</h1>
+        <p class="brand-sub">15-in-1 Offline Studio • Cutter • Video-to-Audio • 10-Band EQ • Slowed+Reverb • 8D • Voice FX</p>
+      </div>
+    </div>
+
+    <div class="top-actions">
+      <label class="btn btn-primary" title="Upload Audio or Video File (MP3, WAV, M4A, OGG, MP4)">
+        <span>📁 Load Audio / Video</span>
+        <input type="file" id="global-audio-input" accept="audio/*,video/*" style="display:none;" />
+      </label>
+      <button type="button" class="btn" id="btn-demo-synth" title="Generate Sample Studio Beat">🎵 Demo Beat</button>
+      <button type="button" class="btn" id="btn-undo-audio" title="Undo Last Edit">↩️ Undo</button>
+      <button type="button" class="btn" id="btn-reset-audio" title="Reset to Original Track">🔄 Original</button>
+      <button type="button" class="btn" id="btn-theme-toggle" title="Toggle Dark/Light Mode">🌓</button>
+      <button type="button" class="btn" id="btn-save-html" title="Download Complete Offline HTML App">💾 Save App HTML</button>
+      <button type="button" class="btn btn-success" id="btn-export-wav" title="Download Processed Master Audio (.WAV)">⬇️ Export Audio</button>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       MAIN WORKSPACE
+       ======================================================================== -->
+  <div class="workspace">
+
+    <!-- 12 AUDIO TOOL CATEGORIES RAIL -->
+    <nav class="tool-rail no-scrollbar">
+      <button type="button" class="tool-btn active" data-tool="trim">
+        <span class="ico">✂️</span><span>Cut & Trim</span>
+      </button>
+      <button type="button" class="tool-btn" data-tool="eq">
+        <span class="ico">🎚️</span><span>10-Band EQ</span>
+      </button>
+      <button type="button" class="tool-btn" data-tool="speed">
+        <span class="ico">🐢</span><span>Speed & Reverb</span>
+      </button>
+      <button type="button" class="tool-btn" data-tool="voicefx">
+        <span class="ico">🤖</span><span>Voice Changer</span>
+      </button>
+      <button type="button" class="tool-btn" data-tool="spatial">
+        <span class="ico">🌀</span><span>8D & Stereo</span>
+      </button>
+      <button type="button" class="tool-btn" data-tool="volume">
+        <span class="ico">🔊</span><span>Gain & Fade</span>
+      </button>
+      <button type="button" class="tool-btn" data-tool="karaoke">
+        <span class="ico">🔇</span><span>Vocal & Noise</span>
+      </button>
+      <button type="button" class="tool-btn" data-tool="merge">
+        <span class="ico">🔗</span><span>Join & BGM Mix</span>
+      </button>
+      <button type="button" class="tool-btn" data-tool="recorder">
+        <span class="ico">🎙️</span><span>Mic Recorder</span>
+      </button>
+      <button type="button" class="tool-btn" data-tool="synth">
+        <span class="ico">🎹</span><span>Tone & Beep</span>
+      </button>
+      <button type="button" class="tool-btn" data-tool="bpm">
+        <span class="ico">🥁</span><span>BPM & Metro</span>
+      </button>
+      <button type="button" class="tool-btn" data-tool="info">
+        <span class="ico">📊</span><span>Track Specs</span>
+      </button>
+    </nav>
+
+    <!-- CENTER WAVEFORM & LIVE SPECTRUM STAGE -->
+    <main class="stage-col">
+
+      <!-- Track Status & Quick Drop Card -->
+      <div class="deck-card">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px;">
+          <div>
+            <div style="font-size:14px;font-weight:800;color:#38bdf8;" id="track-title">No Track Loaded — Attach Audio/Video or Click Demo Beat</div>
+            <div style="font-size:11.5px;color:var(--text-sub);" id="track-meta">Supports MP3, WAV, M4A, AAC, OGG & MP4/WEBM Video Audio Extraction</div>
+          </div>
+          <div style="display:flex;gap:6px;">
+            <span class="time-readout" id="time-display">00:00.0 / 00:00.0</span>
+          </div>
+        </div>
+
+        <!-- Interactive Waveform Canvas (Drag to select trim region) -->
+        <div class="canvas-wrap">
+          <canvas id="waveform-canvas" width="900" height="155"></canvas>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text-sub);margin-top:5px;">
+          <span>💡 Tip: Drag on waveform to select Trim Start & End range</span>
+          <span id="selection-readout">Selection: Full Track</span>
+        </div>
+
+        <!-- Main Transport Controls -->
+        <div class="transport-bar">
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <button type="button" class="btn btn-primary" id="btn-play-pause">▶️ Play</button>
+            <button type="button" class="btn" id="btn-play-sel">🎯 Play Selection</button>
+            <button type="button" class="btn" id="btn-stop">⏹️ Stop</button>
+            <label style="display:flex;align-items:center;gap:5px;font-size:12px;font-weight:700;cursor:pointer;padding:0 6px;">
+              <input type="checkbox" id="chk-loop" /> 🔁 Loop
+            </label>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span style="font-size:11.5px;font-weight:700;color:var(--text-sub);">Master Vol</span>
+            <input type="range" id="master-vol" min="0" max="150" value="100" style="width:90px;" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Real-Time Frequency Spectrum Analyzer & Peak Meter -->
+      <div class="deck-card">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+          <span style="font-size:11.5px;font-weight:800;text-transform:uppercase;color:#a78bfa;">📈 Live Real-Time Frequency Spectrum & Peak Meter</span>
+          <div style="display:flex;gap:6px;">
+            <button type="button" class="btn btn-sm" id="btn-viz-bars">Bars</button>
+            <button type="button" class="btn btn-sm" id="btn-viz-wave">Oscilloscope</button>
+          </div>
+        </div>
+        <div class="canvas-wrap">
+          <canvas id="spectrum-canvas" width="900" height="95"></canvas>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- RIGHT INSPECTOR COLUMN (12 SPECIALIZED AUDIO TOOLS) -->
+    <aside class="inspector-col">
+
+      <!-- ====================================================================
+           TOOL 1: CUTTER, TRIMMER, SPLIT & RING-TONE MAKER
+           ==================================================================== -->
+      <div class="tool-pane active" id="pane-trim">
+        <div class="card">
+          <div class="card-head">
+            <span>✂️ Precision Audio Cutter & Trimmer</span>
+            <button type="button" class="btn btn-sm" id="btn-select-all">Select All</button>
+          </div>
+          <p style="font-size:11.5px;color:var(--text-sub);margin:0 0 10px 0;">
+            Drag directly on the blue waveform OR enter exact start/end seconds below.
+          </p>
+
+          <div class="grid-2" style="margin-bottom:10px;">
+            <div>
+              <label class="lbl">Start Time (sec)</label>
+              <input type="number" id="trim-start" class="input" step="0.1" min="0" value="0" />
+            </div>
+            <div>
+              <label class="lbl">End Time (sec)</label>
+              <input type="number" id="trim-end" class="input" step="0.1" min="0" value="10" />
+            </div>
+          </div>
+
+          <div class="grid-2" style="margin-bottom:8px;">
+            <button type="button" class="btn btn-primary" id="btn-keep-sel">✂️ Keep Selected Part</button>
+            <button type="button" class="btn btn-danger" id="btn-delete-sel">🗑️ Delete Inside Part</button>
+          </div>
+
+          <div class="grid-2">
+            <button type="button" class="btn" id="btn-silence-sel">🔇 Mute Selection</button>
+            <button type="button" class="btn" id="btn-ringtone-30">📱 30s Ringtone Cut</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><span>⏪ Reverse & Loop Repeater</span></div>
+          <div class="grid-2">
+            <button type="button" class="btn" id="btn-reverse-track">⏪ Reverse Audio</button>
+            <button type="button" class="btn" id="btn-loop-2x">🔁 Duplicate 2× Loop</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====================================================================
+           TOOL 2: 10-BAND GRAPHIC EQUALIZER & BASS BOOSTER
+           ==================================================================== -->
+      <div class="tool-pane" id="pane-eq">
+        <div class="card">
+          <div class="card-head">
+            <span>🎚️ 10-Band Studio Equalizer</span>
+            <button type="button" class="btn btn-sm" id="btn-eq-flat">Reset Flat</button>
+          </div>
+
+          <div class="grid-3" style="margin-bottom:10px;">
+            <button type="button" class="btn btn-sm eq-preset" data-eq="bass">🔊 Extreme Bass</button>
+            <button type="button" class="btn btn-sm eq-preset" data-eq="vocal">🎤 Crisp Vocal</button>
+            <button type="button" class="btn btn-sm eq-preset" data-eq="rock">🎸 Rock Punch</button>
+            <button type="button" class="btn btn-sm eq-preset" data-eq="lofi">☕ Warm Lo-Fi</button>
+            <button type="button" class="btn btn-sm eq-preset" data-eq="treble">✨ Air & Treble</button>
+            <button type="button" class="btn btn-sm eq-preset" data-eq="club">🪩 DJ Club V</button>
+          </div>
+
+          <div class="eq-grid" id="eq-bands-box" style="margin-bottom:12px;"></div>
+
+          <button type="button" class="btn btn-primary btn-block" id="btn-bake-eq">
+            ⚡ Apply 10-Band EQ to Audio Track
+          </button>
+        </div>
+      </div>
+
+      <!-- ====================================================================
+           TOOL 3: SPEED, PITCH, SLOWED + REVERB & NIGHTCORE
+           ==================================================================== -->
+      <div class="tool-pane" id="pane-speed">
+        <div class="card">
+          <div class="card-head"><span>🐢 Speed, Pitch & Reel Trends</span></div>
+
+          <label class="lbl">1-Click Reel & YouTube Audio Trends</label>
+          <div class="grid-2" style="margin-bottom:12px;">
+            <button type="button" class="btn btn-primary" id="btn-trend-slowrev">🌊 Slowed + Reverb</button>
+            <button type="button" class="btn btn-primary" id="btn-trend-nightcore">⚡ Nightcore (1.25×)</button>
+            <button type="button" class="btn" id="btn-trend-lofi">📻 Vintage Lo-Fi</button>
+            <button type="button" class="btn" id="btn-trend-underwater">🫧 Underwater Muffle</button>
+          </div>
+
+          <div style="margin-bottom:9px;">
+            <label class="lbl"><span>Playback Speed / Tempo</span><span id="lbl-spd-rate">1.00×</span></label>
+            <input type="range" id="spd-rate" min="0.5" max="2.0" step="0.05" value="1.0" />
+          </div>
+
+          <div style="margin-bottom:12px;">
+            <label class="lbl"><span>Studio Reverb / Echo Room Mix</span><span id="lbl-spd-rev">0%</span></label>
+            <input type="range" id="spd-reverb" min="0" max="85" step="5" value="0" />
+          </div>
+
+          <button type="button" class="btn btn-success btn-block" id="btn-apply-speed-rev">
+            ✅ Render Speed & Reverb to Track
+          </button>
+        </div>
+      </div>
+
+      <!-- ====================================================================
+           TOOL 4: VOICE CHANGER & STUDIO FX LAB
+           ==================================================================== -->
+      <div class="tool-pane" id="pane-voicefx">
+        <div class="card">
+          <div class="card-head"><span>🤖 Voice Changer & Character FX</span></div>
+          <p style="font-size:11.5px;color:var(--text-sub);margin:0 0 10px 0;">
+            Click any character or studio effect below to transform your voice or song.
+          </p>
+
+          <div class="grid-2" style="margin-bottom:8px;">
+            <button type="button" class="btn vfx-btn" data-vfx="chipmunk">🐿️ Chipmunk (High)</button>
+            <button type="button" class="btn vfx-btn" data-vfx="monster">👹 Deep Monster</button>
+            <button type="button" class="btn vfx-btn" data-vfx="robot">🤖 Cyber Robot</button>
+            <button type="button" class="btn vfx-btn" data-vfx="telephone">☎️ Old Telephone</button>
+            <button type="button" class="btn vfx-btn" data-vfx="radio">📻 Vintage AM Radio</button>
+            <button type="button" class="btn vfx-btn" data-vfx="echo">🏔️ Mountain Echo</button>
+            <button type="button" class="btn vfx-btn" data-vfx="cathedral">⛪ Cathedral Hall</button>
+            <button type="button" class="btn vfx-btn" data-vfx="overdrive">🔥 Warm Distortion</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====================================================================
+           TOOL 5: 8D SPATIAL AUDIO & STEREO PANNER
+           ==================================================================== -->
+      <div class="tool-pane" id="pane-spatial">
+        <div class="card">
+          <div class="card-head"><span>🌀 8D Surround & Stereo Studio</span></div>
+          <p style="font-size:11.5px;color:var(--text-sub);margin:0 0 10px 0;">
+            Creates headphone 8D rotating spatial audio with gentle room reverb.
+          </p>
+
+          <div style="margin-bottom:9px;">
+            <label class="lbl"><span>8D Rotation Cycle Speed</span><span id="lbl-8d-sec">8 Seconds</span></label>
+            <input type="range" id="sp-8d-period" min="3" max="16" step="1" value="8" />
+          </div>
+
+          <button type="button" class="btn btn-primary btn-block" id="btn-make-8d" style="margin-bottom:12px;">
+            🎧 Convert to 8D Rotating Audio
+          </button>
+
+          <div style="border-top:1px solid var(--border);padding-top:10px;">
+            <label class="lbl"><span>Static Left / Right Balance</span><span id="lbl-pan-val">Center (0)</span></label>
+            <input type="range" id="sp-pan" min="-100" max="100" value="0" style="margin-bottom:8px;" />
+            <div class="grid-2">
+              <button type="button" class="btn btn-sm" id="btn-apply-pan">↔️ Apply Stereo Pan</button>
+              <button type="button" class="btn btn-sm" id="btn-force-mono">⏺️ Convert to Mono</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====================================================================
+           TOOL 6: VOLUME BOOSTER, NORMALIZER & FADE IN/OUT
+           ==================================================================== -->
+      <div class="tool-pane" id="pane-volume">
+        <div class="card">
+          <div class="card-head"><span>🔊 Volume Booster & Mastering</span></div>
+
+          <div style="margin-bottom:10px;">
+            <label class="lbl"><span>Gain / Volume Boost</span><span id="lbl-gain-pct">120%</span></label>
+            <input type="range" id="vol-gain" min="20" max="250" step="5" value="120" />
+          </div>
+
+          <div class="grid-2" style="margin-bottom:12px;">
+            <button type="button" class="btn btn-primary" id="btn-apply-gain">🔊 Apply Volume</button>
+            <button type="button" class="btn btn-success" id="btn-normalize">📈 0dB Peak Normalize</button>
+          </div>
+
+          <div style="border-top:1px solid var(--border);padding-top:10px;">
+            <label class="lbl">Smooth Fade-In & Fade-Out</label>
+            <div class="grid-2" style="margin-bottom:8px;">
+              <div>
+                <label class="lbl">Fade-In (sec)</label>
+                <input type="number" id="fade-in-sec" class="input" value="2" min="0.5" max="15" step="0.5" />
+              </div>
+              <div>
+                <label class="lbl">Fade-Out (sec)</label>
+                <input type="number" id="fade-out-sec" class="input" value="2" min="0.5" max="15" step="0.5" />
+              </div>
+            </div>
+            <div class="grid-2">
+              <button type="button" class="btn" id="btn-fade-in">🌅 Apply Fade-In</button>
+              <button type="button" class="btn" id="btn-fade-out">🌇 Apply Fade-Out</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====================================================================
+           TOOL 7: VOCAL REMOVER (KARAOKE) & MIC NOISE CLEANER
+           ==================================================================== -->
+      <div class="tool-pane" id="pane-karaoke">
+        <div class="card">
+          <div class="card-head"><span>🔇 Vocal Remover & Mic Denoiser</span></div>
+          <p style="font-size:11.5px;color:var(--text-sub);margin:0 0 10px 0;">
+            Center-channel vocal phase cancellation for stereo songs + rumble/hiss filter for voice recordings.
+          </p>
+
+          <button type="button" class="btn btn-primary btn-block" id="btn-remove-vocals" style="margin-bottom:8px;">
+            🎤 Remove Center Vocals (Karaoke Maker)
+          </button>
+
+          <button type="button" class="btn btn-success btn-block" id="btn-clean-noise" style="margin-bottom:8px;">
+            🧹 Clean Mic Hiss & AC Rumble (85Hz–8kHz)
+          </button>
+
+          <button type="button" class="btn btn-block" id="btn-trim-silence">
+            ✂️ Auto-Trim Dead Silence at Start & End
+          </button>
+        </div>
+      </div>
+
+      <!-- ====================================================================
+           TOOL 8: MULTI-AUDIO MERGER & VOICE + BGM MIXER
+           ==================================================================== -->
+      <div class="tool-pane" id="pane-merge">
+        <div class="card">
+          <div class="card-head"><span>🔗 Join Songs OR Mix Background Music</span></div>
+          <p style="font-size:11.5px;color:var(--text-sub);margin:0 0 10px 0;">
+            Attach a second audio file to either append at the end OR mix behind your current voice track.
+          </p>
+
+          <label class="btn btn-primary btn-block" style="margin-bottom:10px;">
+            <span>➕ Select Second Audio File</span>
+            <input type="file" id="second-audio-input" accept="audio/*,video/*" style="display:none;" />
+          </label>
+          <div id="second-track-name" style="font-size:11.5px;color:#10b981;font-weight:700;margin-bottom:10px;">No second track selected</div>
+
+          <div style="margin-bottom:10px;">
+            <label class="lbl"><span>2nd Track Volume (When Mixing BGM)</span><span id="lbl-bgm-vol">30%</span></label>
+            <input type="range" id="bgm-vol-slider" min="5" max="150" value="30" />
+          </div>
+
+          <div class="grid-2">
+            <button type="button" class="btn btn-primary" id="btn-join-end">➕ Join End-to-End</button>
+            <button type="button" class="btn btn-success" id="btn-overlay-bgm">🎶 Overlay as BGM</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====================================================================
+           TOOL 9: LIVE STUDIO MICROPHONE VOICE RECORDER
+           ==================================================================== -->
+      <div class="tool-pane" id="pane-recorder">
+        <div class="card">
+          <div class="card-head"><span>🎙️ Live Studio Voice Recorder</span></div>
+          <p style="font-size:11.5px;color:var(--text-sub);margin:0 0 12px 0;">
+            Record voice directly from your phone or PC microphone and edit it with all 15 studio tools.
+          </p>
+
+          <div style="text-align:center;padding:14px;background:var(--bg-input);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;">
+            <div style="font-size:26px;font-weight:900;font-family:monospace;color:#f87171;" id="rec-timer">00:00</div>
+            <div style="font-size:11px;color:var(--text-sub);" id="rec-status">Ready to Record</div>
+          </div>
+
+          <div class="grid-2">
+            <button type="button" class="btn btn-primary" id="btn-rec-start">🔴 Start Recording</button>
+            <button type="button" class="btn btn-danger" id="btn-rec-stop" disabled>⏹️ Stop & Load</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====================================================================
+           TOOL 10: TONE, BEEP, WHITE NOISE & BINAURAL GENERATOR
+           ==================================================================== -->
+      <div class="tool-pane" id="pane-synth">
+        <div class="card">
+          <div class="card-head"><span>🎹 Frequency, Beep & Noise Synth</span></div>
+
+          <div class="grid-2" style="margin-bottom:8px;">
+            <div>
+              <label class="lbl">Signal Type</label>
+              <select id="syn-type" class="select">
+                <option value="sine">Sine Wave (Pure Tone)</option>
+                <option value="square">Square (Censor Beep)</option>
+                <option value="sawtooth">Sawtooth Synth</option>
+                <option value="white">White Noise (Sleep/Focus)</option>
+                <option value="pink">Pink Ambient Noise</option>
+                <option value="binaural">432Hz + 440Hz Binaural Focus</option>
+              </select>
+            </div>
+            <div>
+              <label class="lbl">Duration (sec)</label>
+              <input type="number" id="syn-dur" class="input" value="5" min="1" max="60" />
+            </div>
+          </div>
+
+          <div style="margin-bottom:10px;">
+            <label class="lbl"><span>Frequency (Hz)</span><span id="lbl-syn-freq">440 Hz</span></label>
+            <input type="range" id="syn-freq" min="60" max="4000" value="440" />
+          </div>
+
+          <div class="grid-3" style="margin-bottom:10px;">
+            <button type="button" class="btn btn-sm syn-quick" data-f="1000" data-t="square">🤬 1kHz Beep</button>
+            <button type="button" class="btn btn-sm syn-quick" data-f="432" data-t="sine">🧘 432Hz Heal</button>
+            <button type="button" class="btn btn-sm syn-quick" data-f="80" data-t="sine">🔊 80Hz SubTest</button>
+          </div>
+
+          <button type="button" class="btn btn-primary btn-block" id="btn-gen-synth">
+            ⚡ Generate & Load into Studio
+          </button>
+        </div>
+      </div>
+
+      <!-- ====================================================================
+           TOOL 11: TAP BPM FINDER & STUDIO METRONOME
+           ==================================================================== -->
+      <div class="tool-pane" id="pane-bpm">
+        <div class="card">
+          <div class="card-head"><span>🥁 Tap BPM Counter & Metronome</span></div>
+
+          <div style="text-align:center;padding:12px;background:var(--bg-input);border:1px solid var(--border);border-radius:12px;margin-bottom:10px;">
+            <div style="font-size:30px;font-weight:900;color:#38bdf8;" id="bpm-display">120 BPM</div>
+            <div style="font-size:11px;color:var(--text-sub);">Tap button below along with any song beat</div>
+          </div>
+
+          <button type="button" class="btn btn-primary btn-block" id="btn-tap-bpm" style="margin-bottom:12px;padding:12px;">
+            👆 TAP HERE ON THE BEAT
+          </button>
+
+          <div style="border-top:1px solid var(--border);padding-top:10px;">
+            <label class="lbl"><span>Metronome Tempo</span><span id="lbl-metro-bpm">120 BPM</span></label>
+            <input type="range" id="metro-slider" min="40" max="220" value="120" style="margin-bottom:8px;" />
+            <button type="button" class="btn btn-success btn-block" id="btn-toggle-metro">▶️ Start Metronome Click</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====================================================================
+           TOOL 12: AUDIO TRACK INSPECTOR & TECHNICAL SPECS
+           ==================================================================== -->
+      <div class="tool-pane" id="pane-info">
+        <div class="card">
+          <div class="card-head"><span>📊 Audio Buffer & Loudness Specs</span></div>
+          <div id="audio-specs-box" style="font-size:12px;line-height:1.85;color:var(--text-sub);">
+            Load any audio or video track to inspect Sample Rate, Channels, Duration, Peak dB, and RMS loudness.
+          </div>
+        </div>
+      </div>
+
+    </aside>
+  </div>
+
+  <!-- MOBILE STICKY BOTTOM BAR -->
+  <div class="mobile-bar">
+    <label class="btn btn-primary">
+      <span>📁 Load File</span>
+      <input type="file" id="mob-audio-input" accept="audio/*,video/*" style="display:none;" />
+    </label>
+    <button type="button" class="btn" id="mob-play-btn">▶️ Play/Pause</button>
+    <button type="button" class="btn btn-success" id="mob-export-btn">⬇️ Save WAV</button>
+  </div>
+
+  <div id="toast-wrap"></div>
+
+  <!-- ========================================================================
+       100% OFFLINE WEB AUDIO DSP ENGINE & WAV ENCODER
+       ======================================================================== -->
+  <script>
+    (function () {
+      'use strict';
+
+      let audioCtx = null;
+      let originalBuffer = null; // Untouched decoded AudioBuffer
+      let workingBuffer = null;  // Active edited AudioBuffer
+      let secondBuffer = null;   // For Joiner / BGM Mixer
+      let undoStack = [];
+
+      // Playback Node Graph
+      let sourceNode = null;
+      let gainNode = null;
+      let analyserNode = null;
+      let isPlaying = false;
+      let startTime = 0;
+      let pauseOffset = 0;
+      let animFrameId = null;
+      let vizMode = 'bars';
+
+      // Trim Selection in Seconds
+      let selStart = 0;
+      let selEnd = 0;
+      let draggingWave = false;
+      let dragAnchor = 0;
+
+      const waveCanvas = document.getElementById('waveform-canvas');
+      const wCtx = waveCanvas.getContext('2d');
+      const specCanvas = document.getElementById('spectrum-canvas');
+      const sCtx = specCanvas.getContext('2d');
+
+      function getCtx() {
+        if (!audioCtx) {
+          const AC = window.AudioContext || window.webkitAudioContext;
+          audioCtx = new AC();
+        }
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        return audioCtx;
+      }
+
+      function toast(msg) {
+        const wrap = document.getElementById('toast-wrap');
+        const el = document.createElement('div');
+        el.className = 'toast-item';
+        el.textContent = msg;
+        wrap.appendChild(el);
+        setTimeout(() => el.remove(), 2600);
+      }
+
+      function fmtTime(sec) {
+        if (!isFinite(sec) || sec < 0) sec = 0;
+        const m = Math.floor(sec / 60);
+        const s = (sec % 60).toFixed(1);
+        return `${String(m).padStart(2, '0')}:${s.padStart(4, '0')}`;
+      }
+
+      /* ----------------------------------------------------------------------
+         THEME & TOOL NAVIGATION
+         ---------------------------------------------------------------------- */
+      document.getElementById('btn-theme-toggle').addEventListener('click', () => {
+        const html = document.documentElement;
+        html.setAttribute('data-theme', html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+      });
+
+      document.querySelectorAll('.tool-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.tool-btn').forEach((b) => b.classList.remove('active'));
+          btn.classList.add('active');
+          document.querySelectorAll('.tool-pane').forEach((p) => p.classList.remove('active'));
+          document.getElementById('pane-' + btn.dataset.tool).classList.add('active');
+          if (btn.dataset.tool === 'info') updateAudioSpecs();
+        });
+      });
+
+      document.getElementById('btn-viz-bars').addEventListener('click', () => { vizMode = 'bars'; });
+      document.getElementById('btn-viz-wave').addEventListener('click', () => { vizMode = 'wave'; });
+
+      /* ----------------------------------------------------------------------
+         BUFFER CLONING, UNDO & FILE LOADING (AUDIO + VIDEO EXTRACTOR)
+         ---------------------------------------------------------------------- */
+      function cloneAudioBuffer(buf) {
+        if (!buf) return null;
+        const ctx = getCtx();
+        const copy = ctx.createBuffer(buf.numberOfChannels, buf.length, buf.sampleRate);
+        for (let ch = 0; ch < buf.numberOfChannels; ch++) {
+          copy.getChannelData(ch).set(buf.getChannelData(ch));
+        }
+        return copy;
+      }
+
+      function pushUndo() {
+        if (!workingBuffer) return;
+        if (undoStack.length >= 8) undoStack.shift();
+        undoStack.push(cloneAudioBuffer(workingBuffer));
+      }
+
+      function setWorkingBuffer(buf, resetSel = true) {
+        stopPlayback();
+        workingBuffer = buf;
+        if (resetSel) {
+          selStart = 0;
+          selEnd = buf.duration;
+          document.getElementById('trim-start').value = 0;
+          document.getElementById('trim-end').value = buf.duration.toFixed(2);
+        }
+        pauseOffset = 0;
+        drawWaveform();
+        updateHeaderMeta();
+        updateAudioSpecs();
+      }
+
+      function updateHeaderMeta() {
+        if (!workingBuffer) return;
+        const chName = workingBuffer.numberOfChannels === 1 ? 'Mono' : 'Stereo';
+        document.getElementById('track-meta').textContent =
+          `${workingBuffer.sampleRate} Hz • ${chName} • ${workingBuffer.duration.toFixed(2)}s`;
+        document.getElementById('time-display').textContent =
+          `${fmtTime(pauseOffset)} / ${fmtTime(workingBuffer.duration)}`;
+        document.getElementById('selection-readout').textContent =
+          `Selection: ${selStart.toFixed(2)}s – ${selEnd.toFixed(2)}s (${Math.max(0, selEnd - selStart).toFixed(2)}s)`;
+      }
+
+      async function handleFileLoad(file) {
+        if (!file) return;
+        try {
+          toast('⏳ Decoding audio track...');
+          const ctx = getCtx();
+          const arr = await file.arrayBuffer();
+          const decoded = await ctx.decodeAudioData(arr);
+          originalBuffer = cloneAudioBuffer(decoded);
+          undoStack = [];
+          document.getElementById('track-title').textContent = file.name;
+          setWorkingBuffer(decoded, true);
+          toast(`✅ Loaded: ${file.name}`);
+        } catch (err) {
+          toast('⚠️ Could not decode this file format.');
+        }
+      }
+
+      ['global-audio-input', 'mob-audio-input'].forEach((id) => {
+        document.getElementById(id).addEventListener('change', (e) => {
+          if (e.target.files && e.target.files[0]) handleFileLoad(e.target.files[0]);
+        });
+      });
+
+      document.getElementById('btn-undo-audio').addEventListener('click', () => {
+        if (!undoStack.length) return toast('⚠️ Nothing to undo.');
+        setWorkingBuffer(undoStack.pop(), true);
+        toast('↩️ Undid last audio edit');
+      });
+
+      document.getElementById('btn-reset-audio').addEventListener('click', () => {
+        if (!originalBuffer) return;
+        pushUndo();
+        setWorkingBuffer(cloneAudioBuffer(originalBuffer), true);
+        toast('🔄 Restored original untouched audio');
+      });
+
+      // Built-in Demo Studio Beat Generator (100% Offline Synth Melody + Drum Groove)
+      document.getElementById('btn-demo-synth').addEventListener('click', () => {
+        const ctx = getCtx();
+        const sr = ctx.sampleRate;
+        const dur = 8;
+        const len = sr * dur;
+        const buf = ctx.createBuffer(2, len, sr);
+        const L = buf.getChannelData(0);
+        const R = buf.getChannelData(1);
+
+        const notes = [261.63, 329.63, 392.00, 523.25, 392.00, 329.63, 293.66, 349.23];
+        for (let i = 0; i < len; i++) {
+          const t = i / sr;
+          const beatIdx = Math.floor(t * 2);
+          const beatPhase = (t * 2) % 1;
+          const freq = notes[beatIdx % notes.length];
+
+          // Pluck lead
+          const env = Math.exp(-beatPhase * 4.5);
+          const lead = Math.sin(2 * Math.PI * freq * t) * env * 0.35;
+
+          // Sub Kick on every beat
+          const kickEnv = Math.exp(-beatPhase * 14);
+          const kickFreq = 50 + 90 * kickEnv;
+          const kick = Math.sin(2 * Math.PI * kickFreq * t) * kickEnv * 0.5;
+
+          // Hi-hat on off-beat
+          const hatEnv = Math.exp(-((t * 4) % 1) * 28);
+          const hat = (Math.random() * 2 - 1) * hatEnv * 0.12;
+
+          const pan = Math.sin(t * 1.5) * 0.35;
+          L[i] = Math.max(-0.98, Math.min(0.98, kick + hat + lead * (1 - pan)));
+          R[i] = Math.max(-0.98, Math.min(0.98, kick + hat + lead * (1 + pan)));
+        }
+
+        originalBuffer = cloneAudioBuffer(buf);
+        undoStack = [];
+        document.getElementById('track-title').textContent = 'SOLU_Studio_Demo_Groove.wav';
+        setWorkingBuffer(buf, true);
+        toast('🎵 Demo Studio Groove loaded!');
+      });
+
+      /* ----------------------------------------------------------------------
+         WAVEFORM RENDERER & INTERACTIVE TRIM SELECTION
+         ---------------------------------------------------------------------- */
+      function drawWaveform(playheadSec = pauseOffset) {
+        const w = waveCanvas.width;
+        const h = waveCanvas.height;
+        wCtx.clearRect(0, 0, w, h);
+
+        // Background Grid
+        wCtx.fillStyle = '#060911';
+        wCtx.fillRect(0, 0, w, h);
+        wCtx.strokeStyle = 'rgba(59, 130, 246, 0.12)';
+        wCtx.beginPath();
+        wCtx.moveTo(0, h / 2); wCtx.lineTo(w, h / 2);
+        wCtx.stroke();
+
+        if (!workingBuffer) return;
+
+        const data = workingBuffer.getChannelData(0);
+        const step = Math.ceil(data.length / w);
+        const amp = h / 2;
+
+        // Draw Selected Trim Region Highlight
+        const dur = workingBuffer.duration;
+        const sx = (selStart / dur) * w;
+        const ex = (selEnd / dur) * w;
+        wCtx.fillStyle = 'rgba(59, 130, 246, 0.18)';
+        wCtx.fillRect(sx, 0, Math.max(2, ex - sx), h);
+
+        // Waveform Bars
+        for (let i = 0; i < w; i++) {
+          let min = 1.0, max = -1.0;
+          const startIdx = i * step;
+          for (let j = 0; j < step && startIdx + j < data.length; j += 4) {
+            const datum = data[startIdx + j];
+            if (datum < min) min = datum;
+            if (datum > max) max = datum;
+          }
+          const inSel = i >= sx && i <= ex;
+          wCtx.fillStyle = inSel ? '#38bdf8' : '#334155';
+          const y = (1 + min) * amp;
+          const barH = Math.max(1, (max - min) * amp);
+          wCtx.fillRect(i, y, 1, barH);
+        }
+
+        // Trim Handles
+        wCtx.fillStyle = '#a855f7';
+        wCtx.fillRect(sx, 0, 3, h);
+        wCtx.fillRect(ex - 3, 0, 3, h);
+
+        // Playhead Line
+        const px = (playheadSec / dur) * w;
+        wCtx.fillStyle = '#10b981';
+        wCtx.fillRect(px - 1, 0, 2.5, h);
+      }
+
+      function waveXToSec(e) {
+        if (!workingBuffer) return 0;
+        const rect = waveCanvas.getBoundingClientRect();
+        const cx = e.touches ? e.touches[0].clientX : e.clientX;
+        const ratio = Math.max(0, Math.min(1, (cx - rect.left) / rect.width));
+        return ratio * workingBuffer.duration;
+      }
+
+      waveCanvas.addEventListener('mousedown', (e) => {
+        if (!workingBuffer) return;
+        draggingWave = true;
+        dragAnchor = waveXToSec(e);
+        selStart = dragAnchor;
+        selEnd = dragAnchor;
+        pauseOffset = dragAnchor;
+        drawWaveform();
+      });
+
+      waveCanvas.addEventListener('mousemove', (e) => {
+        if (!draggingWave || !workingBuffer) return;
+        const cur = waveXToSec(e);
+        selStart = Math.min(dragAnchor, cur);
+        selEnd = Math.max(dragAnchor, cur);
+        document.getElementById('trim-start').value = selStart.toFixed(2);
+        document.getElementById('trim-end').value = selEnd.toFixed(2);
+        updateHeaderMeta();
+        drawWaveform();
+      });
+
+      window.addEventListener('mouseup', () => {
+        if (draggingWave && workingBuffer) {
+          draggingWave = false;
+          if (selEnd - selStart < 0.08) {
+            selStart = 0;
+            selEnd = workingBuffer.duration;
+            document.getElementById('trim-start').value = 0;
+            document.getElementById('trim-end').value = selEnd.toFixed(2);
+            updateHeaderMeta();
+            drawWaveform();
+          }
+        }
+      });
+
+      waveCanvas.addEventListener('touchstart', (e) => {
+        if (!workingBuffer) return;
+        e.preventDefault();
+        draggingWave = true;
+        dragAnchor = waveXToSec(e);
+        selStart = dragAnchor;
+        selEnd = dragAnchor;
+        pauseOffset = dragAnchor;
+        drawWaveform();
+      }, { passive: false });
+
+      waveCanvas.addEventListener('touchmove', (e) => {
+        if (!draggingWave || !workingBuffer) return;
+        e.preventDefault();
+        const cur = waveXToSec(e);
+        selStart = Math.min(dragAnchor, cur);
+        selEnd = Math.max(dragAnchor, cur);
+        document.getElementById('trim-start').value = selStart.toFixed(2);
+        document.getElementById('trim-end').value = selEnd.toFixed(2);
+        updateHeaderMeta();
+        drawWaveform();
+      }, { passive: false });
+
+      window.addEventListener('touchend', () => { draggingWave = false; });
+
+      /* ----------------------------------------------------------------------
+         AUDIO TRANSPORT & REAL-TIME SPECTRUM VISUALIZER
+         ---------------------------------------------------------------------- */
+      function stopPlayback() {
+        if (sourceNode) {
+          try { sourceNode.stop(); sourceNode.disconnect(); } catch (e) {}
+          sourceNode = null;
+        }
+        isPlaying = false;
+        if (animFrameId) cancelAnimationFrame(animFrameId);
+        document.getElementById('btn-play-pause').textContent = '▶️ Play';
+        document.getElementById('mob-play-btn').textContent = '▶️ Play/Pause';
+      }
+
+      function startPlayback(fromSec = 0, toSec = null) {
+        if (!workingBuffer) return toast('⚠️ Load an audio track or click Demo Beat first!');
+        stopPlayback();
+        const ctx = getCtx();
+
+        sourceNode = ctx.createBufferSource();
+        sourceNode.buffer = workingBuffer;
+        sourceNode.loop = document.getElementById('chk-loop').checked;
+
+        gainNode = ctx.createGain();
+        gainNode.gain.value = parseInt(document.getElementById('master-vol').value, 10) / 100;
+
+        analyserNode = ctx.createAnalyser();
+        analyserNode.fftSize = 256;
+
+        sourceNode.connect(gainNode);
+        gainNode.connect(analyserNode);
+        analyserNode.connect(ctx.destination);
+
+        const dur = toSec ? Math.max(0.05, toSec - fromSec) : workingBuffer.duration - fromSec;
+        if (sourceNode.loop && toSec) {
+          sourceNode.loopStart = fromSec;
+          sourceNode.loopEnd = toSec;
+          sourceNode.start(0, fromSec);
+        } else {
+          sourceNode.start(0, fromSec, dur);
+        }
+
+        startTime = ctx.currentTime - fromSec;
+        isPlaying = true;
+        document.getElementById('btn-play-pause').textContent = '⏸️ Pause';
+
+        sourceNode.onended = () => {
+          if (isPlaying && !sourceNode.loop) {
+            pauseOffset = 0;
+            stopPlayback();
+            drawWaveform(0);
+          }
+        };
+
+        renderLiveLoop();
+      }
+
+      function renderLiveLoop() {
+        if (!isPlaying || !workingBuffer) return;
+        const ctx = getCtx();
+        const cur = (ctx.currentTime - startTime) % workingBuffer.duration;
+        pauseOffset = cur;
+        document.getElementById('time-display').textContent = `${fmtTime(cur)} / ${fmtTime(workingBuffer.duration)}`;
+        drawWaveform(cur);
+
+        // Draw Live Spectrum
+        const sw = specCanvas.width;
+        const sh = specCanvas.height;
+        sCtx.fillStyle = '#060911';
+        sCtx.fillRect(0, 0, sw, sh);
+
+        if (analyserNode) {
+          const bufLen = analyserNode.frequencyBinCount;
+          const dataArr = new Uint8Array(bufLen);
+
+          if (vizMode === 'bars') {
+            analyserNode.getByteFrequencyData(dataArr);
+            const barW = (sw / bufLen) * 1.6;
+            let x = 0;
+            for (let i = 0; i < bufLen; i++) {
+              const v = dataArr[i] / 255;
+              const barH = v * (sh - 6);
+              sCtx.fillStyle = `hsl(${200 + v * 110}, 90%, 58%)`;
+              sCtx.fillRect(x, sh - barH, barW - 1.5, barH);
+              x += barW;
+            }
+          } else {
+            analyserNode.getByteTimeDomainData(dataArr);
+            sCtx.strokeStyle = '#38bdf8';
+            sCtx.lineWidth = 2.2;
+            sCtx.beginPath();
+            const slice = sw / bufLen;
+            let x = 0;
+            for (let i = 0; i < bufLen; i++) {
+              const v = dataArr[i] / 128.0;
+              const y = (v * sh) / 2;
+              if (i === 0) sCtx.moveTo(x, y);
+              else sCtx.lineTo(x, y);
+              x += slice;
+            }
+            sCtx.stroke();
+          }
+        }
+
+        animFrameId = requestAnimationFrame(renderLiveLoop);
+      }
+
+      document.getElementById('btn-play-pause').addEventListener('click', () => {
+        if (isPlaying) {
+          stopPlayback();
+        } else {
+          startPlayback(pauseOffset >= (workingBuffer ? workingBuffer.duration - 0.1 : 0) ? 0 : pauseOffset);
+        }
+      });
+
+      document.getElementById('mob-play-btn').addEventListener('click', () => {
+        document.getElementById('btn-play-pause').click();
+      });
+
+      document.getElementById('btn-play-sel').addEventListener('click', () => {
+        if (!workingBuffer) return;
+        startPlayback(selStart, selEnd);
+      });
+
+      document.getElementById('btn-stop').addEventListener('click', () => {
+        pauseOffset = 0;
+        stopPlayback();
+        drawWaveform(0);
+        updateHeaderMeta();
+      });
+
+      document.getElementById('master-vol').addEventListener('input', (e) => {
+        if (gainNode) gainNode.gain.value = parseInt(e.target.value, 10) / 100;
+      });
+
+      /* ----------------------------------------------------------------------
+         TOOL 1: CUTTER, TRIMMER, REVERSE & LOOP REPEATER
+         ---------------------------------------------------------------------- */
+      document.getElementById('trim-start').addEventListener('input', (e) => {
+        if (!workingBuffer) return;
+        selStart = Math.max(0, Math.min(workingBuffer.duration, parseFloat(e.target.value) || 0));
+        updateHeaderMeta();
+        drawWaveform();
+      });
+      document.getElementById('trim-end').addEventListener('input', (e) => {
+        if (!workingBuffer) return;
+        selEnd = Math.max(selStart, Math.min(workingBuffer.duration, parseFloat(e.target.value) || workingBuffer.duration));
+        updateHeaderMeta();
+        drawWaveform();
+      });
+
+      document.getElementById('btn-select-all').addEventListener('click', () => {
+        if (!workingBuffer) return;
+        selStart = 0;
+        selEnd = workingBuffer.duration;
+        document.getElementById('trim-start').value = 0;
+        document.getElementById('trim-end').value = selEnd.toFixed(2);
+        updateHeaderMeta();
+        drawWaveform();
+      });
+
+      document.getElementById('btn-keep-sel').addEventListener('click', () => {
+        if (!workingBuffer) return;
+        const sSample = Math.floor(selStart * workingBuffer.sampleRate);
+        const eSample = Math.floor(selEnd * workingBuffer.sampleRate);
+        const newLen = Math.max(100, eSample - sSample);
+        pushUndo();
+
+        const ctx = getCtx();
+        const out = ctx.createBuffer(workingBuffer.numberOfChannels, newLen, workingBuffer.sampleRate);
+        for (let ch = 0; ch < workingBuffer.numberOfChannels; ch++) {
+          const src = workingBuffer.getChannelData(ch).subarray(sSample, sSample + newLen);
+          out.getChannelData(ch).set(src);
+        }
+        setWorkingBuffer(out, true);
+        toast('✂️ Trimmed to selected region!');
+      });
+
+      document.getElementById('btn-delete-sel').addEventListener('click', () => {
+        if (!workingBuffer) return;
+        const sSample = Math.floor(selStart * workingBuffer.sampleRate);
+        const eSample = Math.floor(selEnd * workingBuffer.sampleRate);
+        const remLen = workingBuffer.length - (eSample - sSample);
+        if (remLen < 100) return toast('⚠️ Cannot delete entire track!');
+        pushUndo();
+
+        const ctx = getCtx();
+        const out = ctx.createBuffer(workingBuffer.numberOfChannels, remLen, workingBuffer.sampleRate);
+        for (let ch = 0; ch < workingBuffer.numberOfChannels; ch++) {
+          const src = workingBuffer.getChannelData(ch);
+          const dst = out.getChannelData(ch);
+          dst.set(src.subarray(0, sSample), 0);
+          dst.set(src.subarray(eSample), sSample);
+        }
+        setWorkingBuffer(out, true);
+        toast('🗑️ Deleted selected middle section!');
+      });
+
+      document.getElementById('btn-silence-sel').addEventListener('click', () => {
+        if (!workingBuffer) return;
+        pushUndo();
+        const sSample = Math.floor(selStart * workingBuffer.sampleRate);
+        const eSample = Math.floor(selEnd * workingBuffer.sampleRate);
+        for (let ch = 0; ch < workingBuffer.numberOfChannels; ch++) {
+          const d = workingBuffer.getChannelData(ch);
+          for (let i = sSample; i < eSample && i < d.length; i++) d[i] = 0;
+        }
+        setWorkingBuffer(workingBuffer, false);
+        toast('🔇 Muted selected region!');
+      });
+
+      document.getElementById('btn-ringtone-30').addEventListener('click', () => {
+        if (!workingBuffer) return;
+        selEnd = Math.min(workingBuffer.duration, selStart + 30);
+        document.getElementById('trim-end').value = selEnd.toFixed(2);
+        document.getElementById('btn-keep-sel').click();
+      });
+
+      document.getElementById('btn-reverse-track').addEventListener('click', () => {
+        if (!workingBuffer) return;
+        pushUndo();
+        for (let ch = 0; ch < workingBuffer.numberOfChannels; ch++) {
+          Array.prototype.reverse.call(workingBuffer.getChannelData(ch));
+        }
+        setWorkingBuffer(workingBuffer, false);
+        toast('⏪ Reversed audio track!');
+      });
+
+      document.getElementById('btn-loop-2x').addEventListener('click', () => {
+        if (!workingBuffer) return;
+        pushUndo();
+        const ctx = getCtx();
+        const len = workingBuffer.length;
+        const out = ctx.createBuffer(workingBuffer.numberOfChannels, len * 2, workingBuffer.sampleRate);
+        for (let ch = 0; ch < workingBuffer.numberOfChannels; ch++) {
+          const src = workingBuffer.getChannelData(ch);
+          const dst = out.getChannelData(ch);
+          dst.set(src, 0);
+          dst.set(src, len);
+        }
+        setWorkingBuffer(out, true);
+        toast('🔁 Track duplicated 2×!');
+      });
+
+      /* ----------------------------------------------------------------------
+         TOOL 2: 10-BAND GRAPHIC EQUALIZER (OFFLINE AUDIO CONTEXT RENDERING)
+         ---------------------------------------------------------------------- */
+      const EQ_FREQS = [32, 64, 125, 250, 500, 1000, 2000, 4000, 8000, 16000];
+      const eqBox = document.getElementById('eq-bands-box');
+      EQ_FREQS.forEach((f, idx) => {
+        const div = document.createElement('div');
+        div.className = 'eq-band';
+        div.innerHTML = `
+          <span id="eq-v-${idx}">0dB</span>
+          <input type="range" class="eq-slider" data-idx="${idx}" min="-15" max="15" step="1" value="0" />
+          <span>${f >= 1000 ? (f / 1000) + 'k' : f}</span>
+        `;
+        eqBox.appendChild(div);
+      });
+
+      document.querySelectorAll('.eq-slider').forEach((sl) => {
+        sl.addEventListener('input', () => {
+          const v = parseInt(sl.value, 10);
+          document.getElementById('eq-v-' + sl.dataset.idx).textContent = (v > 0 ? '+' : '') + v + 'dB';
+        });
+      });
+
+      const EQ_PRESETS = {
+        flat:   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        bass:   [11, 9, 6, 2, 0, 0, 0, 1, 2, 2],
+        vocal:  [-3, -2, -1, 3, 6, 7, 5, 2, 0, -1],
+        rock:   [6, 5, 3, -1, -2, 1, 4, 6, 7, 7],
+        lofi:   [-6, -3, 2, 5, 4, 1, -4, -8, -12, -14],
+        treble: [0, 0, 0, 0, 1, 3, 6, 8, 10, 11],
+        club:   [8, 7, 4, 0, -3, -2, 2, 5, 7, 8]
+      };
+
+      function setEqSliders(vals) {
+        document.querySelectorAll('.eq-slider').forEach((sl, i) => {
+          sl.value = vals[i];
+          document.getElementById('eq-v-' + i).textContent = (vals[i] > 0 ? '+' : '') + vals[i] + 'dB';
+        });
+      }
+
+      document.getElementById('btn-eq-flat').addEventListener('click', () => setEqSliders(EQ_PRESETS.flat));
+      document.querySelectorAll('.eq-preset').forEach((btn) => {
+        btn.addEventListener('click', () => setEqSliders(EQ_PRESETS[btn.dataset.eq]));
+      });
+
+      document.getElementById('btn-bake-eq').addEventListener('click', async () => {
+        if (!workingBuffer) return toast('⚠️ Load an audio track first!');
+        pushUndo();
+        const offCtx = new OfflineAudioContext(workingBuffer.numberOfChannels, workingBuffer.length, workingBuffer.sampleRate);
+        const src = offCtx.createBufferSource();
+        src.buffer = workingBuffer;
+
+        let prevNode = src;
+        document.querySelectorAll('.eq-slider').forEach((sl, i) => {
+          const f = offCtx.createBiquadFilter();
+          f.type = i === 0 ? 'lowshelf' : i === EQ_FREQS.length - 1 ? 'highshelf' : 'peaking';
+          f.frequency.value = EQ_FREQS[i];
+          f.Q.value = 1.1;
+          f.gain.value = parseFloat(sl.value);
+          prevNode.connect(f);
+          prevNode = f;
+        });
+
+        prevNode.connect(offCtx.destination);
+        src.start(0);
+        const rendered = await offCtx.startRendering();
+        setWorkingBuffer(rendered, false);
+        toast('🎚️ 10-Band EQ applied to track!');
+      });
+
+      /* ----------------------------------------------------------------------
+         TOOL 3 & 4: SPEED, REVERB, SLOWED+REVERB & VOICE CHANGER FX
+         ---------------------------------------------------------------------- */
+      const spdRate = document.getElementById('spd-rate');
+      const spdRev = document.getElementById('spd-reverb');
+
+      spdRate.addEventListener('input', () => {
+        document.getElementById('lbl-spd-rate').textContent = parseFloat(spdRate.value).toFixed(2) + '×';
+      });
+      spdRev.addEventListener('input', () => {
+        document.getElementById('lbl-spd-rev').textContent = spdRev.value + '%';
+      });
+
+      function createImpulseResponse(offCtx, durationSec = 2.2, decay = 2.5) {
+        const sr = offCtx.sampleRate;
+        const len = Math.floor(sr * durationSec);
+        const imp = offCtx.createBuffer(2, len, sr);
+        for (let ch = 0; ch < 2; ch++) {
+          const d = imp.getChannelData(ch);
+          for (let i = 0; i < len; i++) {
+            d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, decay);
+          }
+        }
+        return imp;
+      }
+
+      async function processSpeedAndReverb(rateVal, reverbMixPct, filterFreq = null, filterType = 'lowpass') {
+        if (!workingBuffer) return toast('⚠️ Load an audio track first!');
+        pushUndo();
+
+        const newLen = Math.max(200, Math.floor(workingBuffer.length / rateVal) + (reverbMixPct > 0 ? workingBuffer.sampleRate * 2 : 0));
+        const offCtx = new OfflineAudioContext(workingBuffer.numberOfChannels, newLen, workingBuffer.sampleRate);
+        const src = offCtx.createBufferSource();
+        src.buffer = workingBuffer;
+        src.playbackRate.value = rateVal;
+
+        let chain = src;
+        if (filterFreq) {
+          const flt = offCtx.createBiquadFilter();
+          flt.type = filterType;
+          flt.frequency.value = filterFreq;
+          chain.connect(flt);
+          chain = flt;
+        }
+
+        if (reverbMixPct > 0) {
+          const dryGain = offCtx.createGain();
+          const wetGain = offCtx.createGain();
+          const mix = reverbMixPct / 100;
+          dryGain.gain.value = 1 - mix * 0.4;
+          wetGain.gain.value = mix;
+
+          const conv = offCtx.createConvolver();
+          conv.buffer = createImpulseResponse(offCtx, 2.4, 2.2);
+
+          chain.connect(dryGain);
+          dryGain.connect(offCtx.destination);
+
+          chain.connect(conv);
+          conv.connect(wetGain);
+          wetGain.connect(offCtx.destination);
+        } else {
+          chain.connect(offCtx.destination);
+        }
+
+        src.start(0);
+        const rendered = await offCtx.startRendering();
+        setWorkingBuffer(rendered, true);
+      }
+
+      document.getElementById('btn-apply-speed-rev').addEventListener('click', () => {
+        processSpeedAndReverb(parseFloat(spdRate.value), parseInt(spdRev.value, 10));
+        toast('🐢 Speed & Reverb rendered!');
+      });
+
+      document.getElementById('btn-trend-slowrev').addEventListener('click', () => {
+        spdRate.value = 0.85; spdRev.value = 45;
+        document.getElementById('lbl-spd-rate').textContent = '0.85×';
+        document.getElementById('lbl-spd-rev').textContent = '45%';
+        processSpeedAndReverb(0.85, 45);
+        toast('🌊 Applied Slowed + Reverb effect!');
+      });
+
+      document.getElementById('btn-trend-nightcore').addEventListener('click', () => {
+        spdRate.value = 1.25; spdRev.value = 10;
+        document.getElementById('lbl-spd-rate').textContent = '1.25×';
+        document.getElementById('lbl-spd-rev').textContent = '10%';
+        processSpeedAndReverb(1.25, 10);
+        toast('⚡ Applied Nightcore 1.25× effect!');
+      });
+
+      document.getElementById('btn-trend-lofi').addEventListener('click', () => {
+        processSpeedAndReverb(0.92, 25, 2200, 'lowpass');
+        toast('📻 Applied Vintage Lo-Fi effect!');
+      });
+
+      document.getElementById('btn-trend-underwater').addEventListener('click', () => {
+        processSpeedAndReverb(1.0, 20, 480, 'lowpass');
+        toast('🫧 Applied Underwater Muffle effect!');
+      });
+
+      // Voice Changer Presets
+      document.querySelectorAll('.vfx-btn').forEach((btn) => {
+        btn.addEventListener('click', async () => {
+          if (!workingBuffer) return toast('⚠️ Load an audio or record voice first!');
+          const mode = btn.dataset.vfx;
+          if (mode === 'chipmunk') {
+            await processSpeedAndReverb(1.42, 0);
+          } else if (mode === 'monster') {
+            await processSpeedAndReverb(0.72, 20);
+          } else if (mode === 'telephone') {
+            await processSpeedAndReverb(1.0, 0, 1400, 'bandpass');
+          } else if (mode === 'radio') {
+            await processSpeedAndReverb(1.0, 5, 2100, 'highpass');
+          } else if (mode === 'cathedral') {
+            await processSpeedAndReverb(1.0, 65);
+          } else if (mode === 'echo') {
+            pushUndo();
+            const sr = workingBuffer.sampleRate;
+            const delaySamples = Math.floor(sr * 0.28);
+            const out = getCtx().createBuffer(workingBuffer.numberOfChannels, workingBuffer.length + delaySamples * 2, sr);
+            for (let ch = 0; ch < workingBuffer.numberOfChannels; ch++) {
+              const s = workingBuffer.getChannelData(ch);
+              const d = out.getChannelData(ch);
+              for (let i = 0; i < s.length; i++) {
+                d[i] += s[i];
+                if (i + delaySamples < d.length) d[i + delaySamples] += s[i] * 0.45;
+                if (i + delaySamples * 2 < d.length) d[i + delaySamples * 2] += s[i] * 0.2;
+              }
+            }
+            setWorkingBuffer(out, true);
+          } else if (mode === 'robot') {
+            pushUndo();
+            const sr = workingBuffer.sampleRate;
+            for (let ch = 0; ch < workingBuffer.numberOfChannels; ch++) {
+              const d = workingBuffer.getChannelData(ch);
+              for (let i = 0; i < d.length; i++) {
+                d[i] *= Math.sin(2 * Math.PI * 55 * (i / sr));
+              }
+            }
+            setWorkingBuffer(workingBuffer, false);
+          } else if (mode === 'overdrive') {
+            pushUndo();
+            for (let ch = 0; ch < workingBuffer.numberOfChannels; ch++) {
+              const d = workingBuffer.getChannelData(ch);
+              for (let i = 0; i < d.length; i++) {
+                d[i] = Math.tanh(d[i] * 3.2) * 0.85;
+              }
+            }
+            setWorkingBuffer(workingBuffer, false);
+          }
+          toast(`🤖 Applied ${btn.textContent} effect!`);
+        });
+      });
+
+      /* ----------------------------------------------------------------------
+         TOOL 5: 8D SPATIAL ROTATING AUDIO & STEREO PANNER
+         ---------------------------------------------------------------------- */
+      const sp8d = document.getElementById('sp-8d-period');
+      sp8d.addEventListener('input', () => {
+        document.getElementById('lbl-8d-sec').textContent = sp8d.value + ' Seconds';
+      });
+
+      document.getElementById('btn-make-8d').addEventListener('click', () => {
+        if (!workingBuffer) return toast('⚠️ Load an audio track first!');
+        pushUndo();
+        const ctx = getCtx();
+        const sr = workingBuffer.sampleRate;
+        const len = workingBuffer.length;
+        const period = parseFloat(sp8d.value);
+
+        const out = ctx.createBuffer(2, len, sr);
+        const srcL = workingBuffer.getChannelData(0);
+        const srcR = workingBuffer.numberOfChannels > 1 ? workingBuffer.getChannelData(1) : srcL;
+        const dstL = out.getChannelData(0);
+        const dstR = out.getChannelData(1);
+
+        const delaySamples = Math.floor(sr * 0.045);
+        for (let i = 0; i < len; i++) {
+          const t = i / sr;
+          const angle = (2 * Math.PI * t) / period;
+          const pan = Math.sin(angle); // -1 (Left) to +1 (Right)
+          const gainL = (1 - pan) * 0.52;
+          const gainR = (1 + pan) * 0.52;
+
+          const mono = (srcL[i] + srcR[i]) * 0.5;
+          const echo = i >= delaySamples ? (srcL[i - delaySamples] + srcR[i - delaySamples]) * 0.14 : 0;
+
+          dstL[i] = (mono + echo) * gainL;
+          dstR[i] = (mono + echo) * gainR;
+        }
+        setWorkingBuffer(out, false);
+        toast('🎧 Converted to 8D Spatial Surround Audio!');
+      });
+
+      const spPan = document.getElementById('sp-pan');
+      spPan.addEventListener('input', () => {
+        const v = parseInt(spPan.value, 10);
+        document.getElementById('lbl-pan-val').textContent = v === 0 ? 'Center (0)' : v < 0 ? `Left (${v}%)` : `Right (+${v}%)`;
+      });
+
+      document.getElementById('btn-apply-pan').addEventListener('click', () => {
+        if (!workingBuffer) return;
+        pushUndo();
+        const pan = parseInt(spPan.value, 10) / 100;
+        const out = getCtx().createBuffer(2, workingBuffer.length, workingBuffer.sampleRate);
+        const sL = workingBuffer.getChannelData(0);
+        const sR = workingBuffer.numberOfChannels > 1 ? workingBuffer.getChannelData(1) : sL;
+        const dL = out.getChannelData(0);
+        const dR = out.getChannelData(1);
+        const gL = pan <= 0 ? 1 : 1 - pan;
+        const gR = pan >= 0 ? 1 : 1 + pan;
+        for (let i = 0; i < workingBuffer.length; i++) {
+          dL[i] = sL[i] * gL;
+          dR[i] = sR[i] * gR;
+        }
+        setWorkingBuffer(out, false);
+        toast('↔️ Stereo balance updated!');
+      });
+
+      document.getElementById('btn-force-mono').addEventListener('click', () => {
+        if (!workingBuffer) return;
+        pushUndo();
+        const out = getCtx().createBuffer(1, workingBuffer.length, workingBuffer.sampleRate);
+        const sL = workingBuffer.getChannelData(0);
+        const sR = workingBuffer.numberOfChannels > 1 ? workingBuffer.getChannelData(1) : sL;
+        const d = out.getChannelData(0);
+        for (let i = 0; i < workingBuffer.length; i++) d[i] = (sL[i] + sR[i]) * 0.5;
+        setWorkingBuffer(out, false);
+        toast('⏺️ Converted track to Mono!');
+      });
+
+      /* ----------------------------------------------------------------------
+         TOOL 6: VOLUME BOOSTER, NORMALIZER & FADE IN / OUT
+         ---------------------------------------------------------------------- */
+      const volGain = document.getElementById('vol-gain');
+      volGain.addEventListener('input', () => {
+        document.getElementById('lbl-gain-pct').textContent = volGain.value + '%';
+      });
+
+      document.getElementById('btn-apply-gain').addEventListener('click', () => {
+        if (!workingBuffer) return;
+        pushUndo();
+        const mult = parseInt(volGain.value, 10) / 100;
+        for (let ch = 0; ch < workingBuffer.numberOfChannels; ch++) {
+          const d = workingBuffer.getChannelData(ch);
+          for (let i = 0; i < d.length; i++) {
+            d[i] = Math.max(-0.99, Math.min(0.99, d[i] * mult));
+          }
+        }
+        setWorkingBuffer(workingBuffer, false);
+        toast(`🔊 Volume boosted to ${volGain.value}%!`);
+      });
+
+      document.getElementById('btn-normalize').addEventListener('click', () => {
+        if (!workingBuffer) return;
+        pushUndo();
+        let peak = 0.001;
+        for (let ch = 0; ch < workingBuffer.numberOfChannels; ch++) {
+          const d = workingBuffer.getChannelData(ch);
+          for (let i = 0; i < d.length; i++) {
+            const a = Math.abs(d[i]);
+            if (a > peak) peak = a;
+          }
+        }
+        const scale = 0.97 / peak;
+        for (let ch = 0; ch < workingBuffer.numberOfChannels; ch++) {
+          const d = workingBuffer.getChannelData(ch);
+          for (let i = 0; i < d.length; i++) d[i] *= scale;
+        }
+        setWorkingBuffer(workingBuffer, false);
+        toast('📈 Normalized audio to 0dB Peak!');
+      });
+
+      document.getElementById('btn-fade-in').addEventListener('click', () => {
+        if (!workingBuffer) return;
+        pushUndo();
+        const sec = parseFloat(document.getElementById('fade-in-sec').value) || 2;
+        const samples = Math.min(workingBuffer.length, Math.floor(sec * workingBuffer.sampleRate));
+        for (let ch = 0; ch < workingBuffer.numberOfChannels; ch++) {
+          const d = workingBuffer.getChannelData(ch);
+          for (let i = 0; i < samples; i++) d[i] *= (i / samples);
+        }
+        setWorkingBuffer(workingBuffer, false);
+        toast(`🌅 Applied ${sec}s Fade-In!`);
+      });
+
+      document.getElementById('btn-fade-out').addEventListener('click', () => {
+        if (!workingBuffer) return;
+        pushUndo();
+        const sec = parseFloat(document.getElementById('fade-out-sec').value) || 2;
+        const samples = Math.min(workingBuffer.length, Math.floor(sec * workingBuffer.sampleRate));
+        const startIdx = workingBuffer.length - samples;
+        for (let ch = 0; ch < workingBuffer.numberOfChannels; ch++) {
+          const d = workingBuffer.getChannelData(ch);
+          for (let i = 0; i < samples; i++) d[startIdx + i] *= (1 - i / samples);
+        }
+        setWorkingBuffer(workingBuffer, false);
+        toast(`🌇 Applied ${sec}s Fade-Out!`);
+      });
+
+      /* ----------------------------------------------------------------------
+         TOOL 7: KARAOKE VOCAL REMOVER & MIC NOISE CLEANER
+         ---------------------------------------------------------------------- */
+      document.getElementById('btn-remove-vocals').addEventListener('click', () => {
+        if (!workingBuffer) return;
+        if (workingBuffer.numberOfChannels < 2) return toast('⚠️ Stereo track required for center vocal cancellation!');
+        pushUndo();
+        const L = workingBuffer.getChannelData(0);
+        const R = workingBuffer.getChannelData(1);
+        for (let i = 0; i < workingBuffer.length; i++) {
+          const diff = (L[i] - R[i]) * 0.85;
+          L[i] = diff;
+          R[i] = diff;
+        }
+        setWorkingBuffer(workingBuffer, false);
+        toast('🎤 Center vocals removed (Karaoke OOPS)!');
+      });
+
+      document.getElementById('btn-clean-noise').addEventListener('click', async () => {
+        if (!workingBuffer) return;
+        pushUndo();
+        const offCtx = new OfflineAudioContext(workingBuffer.numberOfChannels, workingBuffer.length, workingBuffer.sampleRate);
+        const src = offCtx.createBufferSource();
+        src.buffer = workingBuffer;
+
+        const hp = offCtx.createBiquadFilter();
+        hp.type = 'highpass';
+        hp.frequency.value = 85;
+
+        const lp = offCtx.createBiquadFilter();
+        lp.type = 'lowpass';
+        lp.frequency.value = 8500;
+
+        src.connect(hp);
+        hp.connect(lp);
+        lp.connect(offCtx.destination);
+        src.start(0);
+        const clean = await offCtx.startRendering();
+        setWorkingBuffer(clean, false);
+        toast('🧹 Cleaned low rumble & high mic hiss!');
+      });
+
+      document.getElementById('btn-trim-silence').addEventListener('click', () => {
+        if (!workingBuffer) return;
+        const d = workingBuffer.getChannelData(0);
+        const thresh = 0.015;
+        let first = 0, last = d.length - 1;
+        while (first < last && Math.abs(d[first]) < thresh) first++;
+        while (last > first && Math.abs(d[last]) < thresh) last--;
+        if (last - first < 200) return toast('⚠️ Track is mostly silent.');
+        selStart = first / workingBuffer.sampleRate;
+        selEnd = last / workingBuffer.sampleRate;
+        document.getElementById('btn-keep-sel').click();
+      });
+
+      /* ----------------------------------------------------------------------
+         TOOL 8: MULTI-AUDIO JOINER & VOICE + BGM MIXER
+         ---------------------------------------------------------------------- */
+      const bgmSlider = document.getElementById('bgm-vol-slider');
+      bgmSlider.addEventListener('input', () => {
+        document.getElementById('lbl-bgm-vol').textContent = bgmSlider.value + '%';
+      });
+
+      document.getElementById('second-audio-input').addEventListener('change', async (e) => {
+        const f = e.target.files && e.target.files[0];
+        if (!f) return;
+        try {
+          const arr = await f.arrayBuffer();
+          secondBuffer = await getCtx().decodeAudioData(arr);
+          document.getElementById('second-track-name').textContent = `✅ 2nd Track Ready: ${f.name} (${secondBuffer.duration.toFixed(1)}s)`;
+          toast('✅ Second track loaded!');
+        } catch (err) {
+          toast('⚠️ Failed to decode second audio file.');
+        }
+      });
+
+      document.getElementById('btn-join-end').addEventListener('click', () => {
+        if (!workingBuffer || !secondBuffer) return toast('⚠️ Load both main track and a second track first!');
+        pushUndo();
+        const ctx = getCtx();
+        const chs = Math.max(workingBuffer.numberOfChannels, secondBuffer.numberOfChannels);
+        const out = ctx.createBuffer(chs, workingBuffer.length + secondBuffer.length, workingBuffer.sampleRate);
+        for (let ch = 0; ch < chs; ch++) {
+          const d = out.getChannelData(ch);
+          const s1 = workingBuffer.getChannelData(Math.min(ch, workingBuffer.numberOfChannels - 1));
+          const s2 = secondBuffer.getChannelData(Math.min(ch, secondBuffer.numberOfChannels - 1));
+          d.set(s1, 0);
+          d.set(s2, workingBuffer.length);
+        }
+        setWorkingBuffer(out, true);
+        toast('🔗 Joined both audio tracks end-to-end!');
+      });
+
+      document.getElementById('btn-overlay-bgm').addEventListener('click', () => {
+        if (!workingBuffer || !secondBuffer) return toast('⚠️ Load both main track and a second BGM track first!');
+        pushUndo();
+        const ctx = getCtx();
+        const bgmGain = parseInt(bgmSlider.value, 10) / 100;
+        const chs = Math.max(workingBuffer.numberOfChannels, secondBuffer.numberOfChannels);
+        const out = ctx.createBuffer(chs, workingBuffer.length, workingBuffer.sampleRate);
+
+        for (let ch = 0; ch < chs; ch++) {
+          const d = out.getChannelData(ch);
+          const s1 = workingBuffer.getChannelData(Math.min(ch, workingBuffer.numberOfChannels - 1));
+          const s2 = secondBuffer.getChannelData(Math.min(ch, secondBuffer.numberOfChannels - 1));
+          for (let i = 0; i < workingBuffer.length; i++) {
+            const bgSample = s2[i % s2.length] * bgmGain;
+            d[i] = Math.max(-0.99, Math.min(0.99, s1[i] + bgSample));
+          }
+        }
+        setWorkingBuffer(out, false);
+        toast('🎶 Mixed background music behind main track!');
+      });
+
+      /* ----------------------------------------------------------------------
+         TOOL 9: LIVE STUDIO MICROPHONE VOICE RECORDER
+         ---------------------------------------------------------------------- */
+      let mediaRec = null;
+      let recChunks = [];
+      let recInterval = null;
+      let recSeconds = 0;
+
+      document.getElementById('btn-rec-start').addEventListener('click', async () => {
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          recChunks = [];
+          mediaRec = new MediaRecorder(stream);
+          mediaRec.ondataavailable = (e) => { if (e.data.size > 0) recChunks.push(e.data); };
+          mediaRec.onstop = async () => {
+            stream.getTracks().forEach((t) => t.stop());
+            const blob = new Blob(recChunks, { type: 'audio/webm' });
+            const arr = await blob.arrayBuffer();
+            const decoded = await getCtx().decodeAudioData(arr);
+            originalBuffer = cloneAudioBuffer(decoded);
+            undoStack = [];
+            document.getElementById('track-title').textContent = `Studio_Mic_Recording_${Date.now()}.wav`;
+            setWorkingBuffer(decoded, true);
+            toast('🎙️ Voice recording loaded into studio!');
+          };
+
+          mediaRec.start();
+          recSeconds = 0;
+          document.getElementById('rec-status').textContent = '🔴 Recording Live from Microphone...';
+          document.getElementById('btn-rec-start').disabled = true;
+          document.getElementById('btn-rec-stop').disabled = false;
+
+          recInterval = setInterval(() => {
+            recSeconds++;
+            const m = String(Math.floor(recSeconds / 60)).padStart(2, '0');
+            const s = String(recSeconds % 60).padStart(2, '0');
+            document.getElementById('rec-timer').textContent = `${m}:${s}`;
+          }, 1000);
+        } catch (err) {
+          toast('⚠️ Microphone permission denied or not available.');
+        }
+      });
+
+      document.getElementById('btn-rec-stop').addEventListener('click', () => {
+        if (mediaRec && mediaRec.state !== 'inactive') mediaRec.stop();
+        clearInterval(recInterval);
+        document.getElementById('rec-status').textContent = 'Recording Saved to Studio';
+        document.getElementById('btn-rec-start').disabled = false;
+        document.getElementById('btn-rec-stop').disabled = true;
+      });
+
+      /* ----------------------------------------------------------------------
+         TOOL 10: FREQUENCY TONE, BEEP & NOISE GENERATOR
+         ---------------------------------------------------------------------- */
+      const synFreq = document.getElementById('syn-freq');
+      synFreq.addEventListener('input', () => {
+        document.getElementById('lbl-syn-freq').textContent = synFreq.value + ' Hz';
+      });
+
+      document.querySelectorAll('.syn-quick').forEach((b) => {
+        b.addEventListener('click', () => {
+          synFreq.value = b.dataset.f;
+          document.getElementById('syn-type').value = b.dataset.t;
+          document.getElementById('lbl-syn-freq').textContent = b.dataset.f + ' Hz';
+          document.getElementById('btn-gen-synth').click();
+        });
+      });
+
+      document.getElementById('btn-gen-synth').addEventListener('click', () => {
+        const ctx = getCtx();
+        const type = document.getElementById('syn-type').value;
+        const dur = Math.max(1, Math.min(60, parseFloat(document.getElementById('syn-dur').value) || 5));
+        const freq = parseFloat(synFreq.value) || 440;
+        const sr = ctx.sampleRate;
+        const len = Math.floor(sr * dur);
+        const buf = ctx.createBuffer(2, len, sr);
+        const L = buf.getChannelData(0);
+        const R = buf.getChannelData(1);
+
+        let b0 = 0, b1 = 0, b2 = 0;
+        for (let i = 0; i < len; i++) {
+          const t = i / sr;
+          if (type === 'sine') {
+            L[i] = R[i] = Math.sin(2 * Math.PI * freq * t) * 0.6;
+          } else if (type === 'square') {
+            L[i] = R[i] = (Math.sin(2 * Math.PI * freq * t) >= 0 ? 0.5 : -0.5);
+          } else if (type === 'sawtooth') {
+            L[i] = R[i] = (2 * ((t * freq) - Math.floor(0.5 + t * freq))) * 0.5;
+          } else if (type === 'white') {
+            L[i] = (Math.random() * 2 - 1) * 0.35;
+            R[i] = (Math.random() * 2 - 1) * 0.35;
+          } else if (type === 'pink') {
+            const w = Math.random() * 2 - 1;
+            b0 = 0.99765 * b0 + w * 0.0990460;
+            b1 = 0.96300 * b1 + w * 0.2965164;
+            b2 = 0.57000 * b2 + w * 1.0526913;
+            L[i] = R[i] = (b0 + b1 + b2 + w * 0.1848) * 0.06;
+          } else if (type === 'binaural') {
+            L[i] = Math.sin(2 * Math.PI * 432 * t) * 0.55;
+            R[i] = Math.sin(2 * Math.PI * 440 * t) * 0.55;
+          }
+        }
+
+        pushUndo();
+        document.getElementById('track-title').textContent = `Synth_${type}_${freq}Hz.wav`;
+        setWorkingBuffer(buf, true);
+        toast(`🎹 Generated ${dur}s ${type} signal!`);
+      });
+
+      /* ----------------------------------------------------------------------
+         TOOL 11: TAP BPM COUNTER & STUDIO METRONOME
+         ---------------------------------------------------------------------- */
+      let tapTimes = [];
+      document.getElementById('btn-tap-bpm').addEventListener('click', () => {
+        const now = performance.now();
+        if (tapTimes.length && now - tapTimes[tapTimes.length - 1] > 2500) tapTimes = [];
+        tapTimes.push(now);
+        if (tapTimes.length > 6) tapTimes.shift();
+
+        if (tapTimes.length >= 2) {
+          let sum = 0;
+          for (let i = 1; i < tapTimes.length; i++) sum += (tapTimes[i] - tapTimes[i - 1]);
+          const avgMs = sum / (tapTimes.length - 1);
+          const bpm = Math.round(60000 / avgMs);
+          document.getElementById('bpm-display').textContent = `${bpm} BPM`;
+          document.getElementById('metro-slider').value = Math.max(40, Math.min(220, bpm));
+          document.getElementById('lbl-metro-bpm').textContent = `${bpm} BPM`;
+        }
+      });
+
+      let metroTimer = null;
+      const metroSlider = document.getElementById('metro-slider');
+      metroSlider.addEventListener('input', () => {
+        document.getElementById('lbl-metro-bpm').textContent = metroSlider.value + ' BPM';
+        if (metroTimer) {
+          document.getElementById('btn-toggle-metro').click();
+          document.getElementById('btn-toggle-metro').click();
+        }
+      });
+
+      document.getElementById('btn-toggle-metro').addEventListener('click', (e) => {
+        if (metroTimer) {
+          clearInterval(metroTimer);
+          metroTimer = null;
+          e.target.textContent = '▶️ Start Metronome Click';
+          return;
+        }
+        const bpm = parseInt(metroSlider.value, 10) || 120;
+        const intervalMs = 60000 / bpm;
+        e.target.textContent = '⏹️ Stop Metronome';
+
+        const playClick = () => {
+          const ctx = getCtx();
+          const osc = ctx.createOscillator();
+          const g = ctx.createGain();
+          osc.frequency.value = 1100;
+          g.gain.setValueAtTime(0.4, ctx.currentTime);
+          g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.045);
+          osc.connect(g);
+          g.connect(ctx.destination);
+          osc.start();
+          osc.stop(ctx.currentTime + 0.05);
+        };
+        playClick();
+        metroTimer = setInterval(playClick, intervalMs);
+      });
+
+      /* ----------------------------------------------------------------------
+         TOOL 12: AUDIO TRACK TECHNICAL SPECS & LOUDNESS
+         ---------------------------------------------------------------------- */
+      function updateAudioSpecs() {
+        if (!workingBuffer) return;
+        const d = workingBuffer.getChannelData(0);
+        let peak = 0, sumSq = 0;
+        for (let i = 0; i < d.length; i += 4) {
+          const a = Math.abs(d[i]);
+          if (a > peak) peak = a;
+          sumSq += d[i] * d[i];
+        }
+        const rms = Math.sqrt(sumSq / (d.length / 4));
+        const peakDb = (20 * Math.log10(Math.max(0.0001, peak))).toFixed(1);
+        const rmsDb = (20 * Math.log10(Math.max(0.0001, rms))).toFixed(1);
+        const estWavMb = ((workingBuffer.length * workingBuffer.numberOfChannels * 2) / (1024 * 1024)).toFixed(2);
+
+        document.getElementById('audio-specs-box').innerHTML = `
+          <div><strong>Duration:</strong> ${workingBuffer.duration.toFixed(3)} seconds (${workingBuffer.length.toLocaleString()} samples)</div>
+          <div><strong>Sample Rate:</strong> ${workingBuffer.sampleRate} Hz</div>
+          <div><strong>Channels:</strong> ${workingBuffer.numberOfChannels} (${workingBuffer.numberOfChannels === 1 ? 'Mono' : 'Stereo'})</div>
+          <div><strong>Peak Level:</strong> ${peakDb} dBFS</div>
+          <div><strong>Average RMS Loudness:</strong> ${rmsDb} dBFS</div>
+          <div><strong>Uncompressed 16-Bit WAV Size:</strong> ~${estWavMb} MB</div>
+        `;
+      }
+
+      /* ----------------------------------------------------------------------
+         16-BIT PCM WAV ENCODER & STANDALONE HTML APP DOWNLOADER
+         ---------------------------------------------------------------------- */
+      function encodeWAVFromBuffer(buffer) {
+        const numCh = buffer.numberOfChannels;
+        const sr = buffer.sampleRate;
+        const numSamples = buffer.length;
+        const bytesPerSample = 2;
+        const blockAlign = numCh * bytesPerSample;
+        const dataSize = numSamples * blockAlign;
+        const arrayBuf = new ArrayBuffer(44 + dataSize);
+        const view = new DataView(arrayBuf);
+
+        function writeStr(offset, str) {
+          for (let i = 0; i < str.length; i++) view.setUint8(offset + i, str.charCodeAt(i));
+        }
+
+        writeStr(0, 'RIFF');
+        view.setUint32(4, 36 + dataSize, true);
+        writeStr(8, 'WAVE');
+        writeStr(12, 'fmt ');
+        view.setUint32(16, 16, true);
+        view.setUint16(20, 1, true); // PCM
+        view.setUint16(22, numCh, true);
+        view.setUint32(24, sr, true);
+        view.setUint32(28, sr * blockAlign, true);
+        view.setUint16(32, blockAlign, true);
+        view.setUint16(34, 16, true);
+        writeStr(36, 'data');
+        view.setUint32(40, dataSize, true);
+
+        const channels = [];
+        for (let c = 0; c < numCh; c++) channels.push(buffer.getChannelData(c));
+
+        let offset = 44;
+        for (let i = 0; i < numSamples; i++) {
+          for (let c = 0; c < numCh; c++) {
+            const sample = Math.max(-1, Math.min(1, channels[c][i]));
+            view.setInt16(offset, sample < 0 ? sample * 0x8000 : sample * 0x7FFF, true);
+            offset += 2;
+          }
+        }
+        return new Blob([arrayBuf], { type: 'audio/wav' });
+      }
+
+      function exportMasterWAV() {
+        if (!workingBuffer) return toast('⚠️ Load or record an audio track first!');
+        const wavBlob = encodeWAVFromBuffer(workingBuffer);
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(wavBlob);
+        const baseName = document.getElementById('track-title').textContent.replace(/\.[^/.]+$/, '').replace(/\s+/g, '_');
+        a.download = `${baseName}_SOLU_MASTER.wav`;
+        a.click();
+        toast('⬇️ Exported Studio Master .WAV!');
+      }
+
+      document.getElementById('btn-export-wav').addEventListener('click', exportMasterWAV);
+      document.getElementById('mob-export-btn').addEventListener('click', exportMasterWAV);
+
+      document.getElementById('btn-save-html').addEventListener('click', () => {
+        const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+        const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'solu-digital-audio-tools.html';
+        a.click();
+        toast('💾 Saved solu-digital-audio-tools.html!');
+      });
+
+      // Boot initial empty waveform canvas
+      drawWaveform(0);
+    })();
+  </script>
+</body>
+</html>
